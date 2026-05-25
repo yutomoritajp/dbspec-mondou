@@ -276,14 +276,38 @@ IPAが運営するデータベーススペシャリスト試験（以下、DBス
 
 > 主要エンティティと関係を箇条書きまたは図で。ER 図は `docs/diagrams/` に置いてリンク。
 
-- エンティティ：`TODO`
-- 関係：`TODO`
+### エンティティ
+
+- ユーザー(User)：ユーザー識別情報（ユーザー識別子、名前など）
+- 問題(Question)：過去問問答固有の問題情報（問題識別子、問題タイプなど）
+- 問題マスタ情報(QuestionMasterInfo)：DBスペシャリスト過去問が持つ問題に関する情報（試験回、試験区分、問題番号、問題文など）
+- 解答：問題に紐づく解答（選択式、記述式共通）
+- 解説(Commantary)：解答に紐づく解説。
+- 選択肢(Option)：問題の選択肢（記述式問題のみ）。
+- 履歴（History）：ユーザーごとの解答履歴。（ユーザー解答、問題、正解など）
+- AIログ(AiLog)：AI質問のログ。（ユーザーの会話、AIの解答）
+
+### 関係
+
+```mermaid
+---
+title: "ER図"
+---
+erDiagram
+    users ||--o{ histories : "解答履歴を残す"
+    users ||--o{ aiLogs : "AI会話履歴を残す"
+    aiLogs }o--|| questions : "AI履歴を残される"
+    questionMasterInfos ||--|| questions : "問題情報を提供する"
+    questions ||--o{ histories : "解答履歴を残す"
+    questions ||--o{ options : "選択肢を要求する"
+    questions ||--|| answears : "解答を要求する"
+    answears ||--|| commantaries : "解説を要求する"
+```
+
 
 ---
 
 ## 7. 画面・UI（必要に応じて）
-
-> 画面一覧と遷移、または Figma / モック画像へのリンク。不要なら章ごと削除。
 
 | 画面 ID | 画面名 | 概要 | 関連機能 |
 | --- | --- | --- | --- |
