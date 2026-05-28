@@ -4,9 +4,7 @@ AIと対話しながら、データベーススペシャリスト試験（IPA）
 
 ## ドキュメント
 
-- [要件定義書](./docs/requirements.md)
-- [基本設計書](./docs/basic-design.md)
-- [詳細設計書](./docs/detailed-design.md)
+- [設計書ディレクトリ](./docs/)
 
 ## ステータス
 
